@@ -78,6 +78,7 @@ def tune_unet(trial, direction="minimize"):
     """
 
     lr = trial.suggest_categorical("lr", [1e-2, 1e-3, 1e-5, 3e-5, 1e-7, 2e-3])
+    sm.set_framework('tf.keras')
     model = sm.Unet('resnet34', input_shape=(256,256,3), encoder_weights='imagenet')
 
     early_stopping = EarlyStopping( monitor='loss', min_delta=0, patience=4)

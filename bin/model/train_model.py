@@ -2,8 +2,8 @@
 import os, sys
 import pandas as pd
 from unet import UNet
-from keras.callbacks import ModelCheckpoint
-from keras.optimizers import Adam
+from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.keras.optimizers import Adam
 import segmentation_models as sm
 from segmentation_models import get_preprocessing
 from segmentation_models.metrics import iou_score
@@ -55,6 +55,7 @@ if __name__ == "__main__":
 
   BACKBONE = 'seresnet34'
   preprocess_input = get_preprocessing(BACKBONE)
+  sm.set_framework('tf.keras')
   model = sm.Unet(BACKBONE, input_shape=(256,256,3), 
   encoder_weights='imagenet', decoder_block_type='transpose')
 
