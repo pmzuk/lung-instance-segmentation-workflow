@@ -290,7 +290,7 @@ def run_workflow(args):
                     pfn=top_dir / "bin/model/hpo.py",
                     is_stageable=True,
                     container=unet_wf_cont
-                ).add_pegasus_profile(cores=8, runtime=14400)
+                ).add_pegasus_profile(cores=8, runtime=14400, memory=12*1024)
 
 
     train_model = Transformation( 
@@ -299,7 +299,7 @@ def run_workflow(args):
                     pfn=top_dir / "bin/model/train_model.py",
                     is_stageable=True,
                     container=unet_wf_cont
-                ).add_pegasus_profile(cores=8, runtime=7200)
+                ).add_pegasus_profile(cores=8, runtime=7200, memory=8*1024)
 
     predict_masks = Transformation( 
                     "predict_masks",
